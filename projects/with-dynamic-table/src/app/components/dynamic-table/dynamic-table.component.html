@@ -1,0 +1,35 @@
+<button type="button" mat-flat-button color="primary" class="float-right mb-3" (click)="onRecordCreate()">Add</button>
+
+<table mat-table [dataSource]="data">
+
+  @for (definition of fieldDefinition; track definition.name) {
+  <ng-container [matColumnDef]="definition.name">
+    <th mat-header-cell *matHeaderCellDef> {{definition.name | sentenceCase}} </th>
+    <td mat-cell *matCellDef="let element">
+      @switch(definition.type){
+        @case(FieldType.DATEPICKER){
+          {{element[definition.name] | date: 'MM/dd/yyyy'}}
+        }
+        @default {
+          {{element[definition.name]}}
+        }
+      }
+    </td>
+  </ng-container>
+  }
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button matTooltip="Edit" (click)="onRecordEdit(element)" mat-icon-button color="primary"
+        aria-label="Example icon button with a home icon">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matTooltip="Remove" mat-icon-button color="primary" aria-label="Example icon button with a home icon"
+        (click)="onRecordRemove(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayColumnDefinitions"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumnDefinitions;"></tr>
+</table>

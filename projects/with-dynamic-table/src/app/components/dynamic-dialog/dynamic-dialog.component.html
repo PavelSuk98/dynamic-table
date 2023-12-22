@@ -1,0 +1,12 @@
+<h1 mat-dialog-title >
+  {{ data.isEdit ? 'Edit record': 'New record'}}
+</h1>
+<div mat-dialog-content >
+  <lib-dynamic-form [fieldset]="data.fields" [prefillData]="data.prefetch" class="relative"></lib-dynamic-form>
+</div>
+<div>
+  <button mat-raised-button mat-dialog-close (click)="onCloseDialog()">Cancel</button>
+  <button mat-raised-button mat-dialog-close color="primary" (click)="onDialogConfirm()">
+      {{ data.isEdit ? 'Save': 'Add'}}
+  </button>
+</div>

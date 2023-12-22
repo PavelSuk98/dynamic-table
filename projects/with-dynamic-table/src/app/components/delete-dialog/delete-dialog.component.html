@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Record remove</h1>
+<div mat-dialog-content>
+  Are you sure you want to remove this record?
+</div>
+<div class="flex justify-end gap-3 pt-1.5 pr-6 pb-6">
+  <button mat-raised-button mat-dialog-close (click)="onCloseDialog()">No</button>
+  <button mat-raised-button mat-dialog-close color="warn" (click)="onDeleteRow()">Yes</button>
+</div>
